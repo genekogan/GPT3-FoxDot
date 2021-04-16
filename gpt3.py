@@ -42,10 +42,7 @@ def complete(prompt,
         #    or (n_completions >= max_completions) \
         #    or (n_tokens + max_tokens >= 2000)  # maximum token limit
     
-    # print("===========")
-    # print("COMPLETION")
     # print(completion)
-    # print("===========")
     return completion.strip()
 
 

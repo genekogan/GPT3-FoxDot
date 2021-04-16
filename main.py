@@ -36,12 +36,14 @@ prompt = '''space([1,[2,5,5,5,8]], dur=[4,4,4,2], oct=4, amp=linvar([1,3],28), d
 marimba(var([0,1],[3,4,12,3]), amp=[0.5,0.25,0.5,0.75], vib=PRand(5)/5)
 bass(P[0,1,3,4,0].stutter(12), dur=[0.5,0.5,0.5,0.5,1], amp=1)
 karp(P[[5,5,5,6,6],[4,4,4,6,6]].stutter(16) + var([0,PRand(3)],[3,4]), dur=0.25, oct=5, sus=3, blur=2, amp=linvar([0.25,0.5],16))
+play("si-$0-ttt-fff-iii", delay=0.05, dur=0.16, amp=[1,0.5,0.5,0.25,1])
 pulse(8 + var([0,2],[4,8]), amp=([0,1],[48,16]))
 glass(oct=6, rate=linvar([-2,2],16), shape=0.5, amp=1.5, room=0.5)
 pasha(dur=12, oct=6, vib=2, tremolo=3, amp=1)
 dbass(dur=PDur(3,8), sus=2, chop=4, shape=PWhite(0,1/2), pan=PWhite(-1,1)).sometimes("offadd", 4) + var([0,2],4)
 space([7,6,4,P*(2,1),0], dur=8, pan=(-1,1))
 blip([0, 2, [0, 1, 2]], dur=8, sus=4, room=1, oct=6) + [0,0,0,P*(2,4,3,-1)]
+play("x-o{-[-(-o)]}", sample=0).every([28,4], "trim", 3)
 pluck([0, 3, 2], dur=[1/2, 1], oct=4)
 pads([0, 3, 7, 8, -2], dur=[4, 8], oct=5, amp=0.7)
 sawbass(var([0,1,5,var([4,6],[14,2])],1), dur=PDur(3,8), cutoff=4000, sus=1/2)
@@ -130,29 +132,12 @@ thread = EventThread()
 thread.start() 
 
 
-# synth1 = {'name': 'p1', 'code': '123 world 888'}
-# synth2 = {'name': 'p2', 'code': 'abc world 999'}
-# synth3 = {'name': 'p3', 'code': 'def world 000'}
-
-# time.sleep(2)
-# events.append({'time': time.time(), 'event': synth1, 'action': 'start'})
-# events.append({'time': time.time()+8, 'event': synth1, 'action': 'stop'})
-
-# time.sleep(15)
-# events.append({'time': time.time(), 'event': synth2, 'action': 'start'})
-# events.append({'time': time.time()+20, 'event': synth2, 'action': 'stop'})
-
-
-# time.sleep(7)
-# events.append({'time': time.time(), 'event': synth3, 'action': 'start'})
-# events.append({'time': time.time()+10, 'event': synth3, 'action': 'stop'})
-
 while True:
 
     completion = gpt3.complete(
         prompt, 
         stops=None, 
-        max_tokens=450, 
+        max_tokens=1050, 
         temperature=0.9, 
         engine='davinci',
         max_completions=1)
